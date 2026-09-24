@@ -433,7 +433,7 @@
   function renderChat(){
     $('#chatMessages').innerHTML='';
     if(!state.messages.length){
-      state.messages.push({role:'assistant',text:'أهلاً بك 👋 أنا واجهة دُرّة بغداد. اكتب طلبك، أو أرفق ملفاً، أو جرّب أحد الاختصارات. هذه النسخة تعمل محلياً ويمكن ربطها لاحقاً بأي خدمة AI.'});
+      state.messages.push({role:'assistant',text:'أهلاً بك 👋 أنا دُرّة بغداد. اكتب طلبك، وسأرسل رسالتك إلى الذكاء الاصطناعي عبر السيرفر.'});
       save();
     }
     state.messages.forEach(renderMessage);
@@ -441,60 +441,69 @@
   }
   renderChat();
 
-  function assistantReply(q){
-    const s=q.toLowerCase();
-    if(s.includes('مرحبا')||s.includes('هلا')||s.includes('السلام')) return 'أهلاً وسهلاً بك 🌟 كيف أساعدك اليوم؟';
-    if(s.includes('خطة')||s.includes('مشروع')) return 'أستطيع ترتيب الفكرة بهذا الشكل:\n1) تحديد الهدف\n2) تحديد الجمهور\n3) تحديد الموارد\n4) بناء الخطوات\n5) تحديد مؤشرات النجاح\n6) التنفيذ\n7) المراجعة والتطوير';
-    if(s.includes('تلخيص')||s.includes('لخص')) return 'أرسل النص أو الملف الذي تريد تلخيصه، وسأجهز لك ملخصاً منظماً داخل هذه الواجهة.';
-    if(s.includes('صورة')||s.includes('تصميم')) return 'يمكنك إرفاق صورة أو الانتقال إلى مكتبة الأدوات لاختيار أداة التصميم المناسبة.';
-    return `تم استلام طلبك: «${q}»\nهذه نسخة واجهة محلية؛ لإنتاج إجابة حقيقية من نموذج ذكاء اصطناعي، اربط دالة sendChat بخدمة API التي تستخدمها.`;
-  }
-
   async function sendChat(){
     const input=$('#chatInput'), q=input.value.trim();
     if(!q && !state.file) return;
-    
-    const userMsg = {role:'user', text: q || 'تم إرفاق ملف', file: state.file?.name||''};
-    state.messages.push(userMsg);
-    renderMessage(userMsg); 
-    save();
-    
-    input.value=''; 
-    input.style.height='auto';
-    const file = state.file; 
-    state.file = null; 
-    $('#filePreview').classList.add('hidden'); 
-    $('#filePreview').innerHTML = '';
-    
-    // إشعار بأن السيرفر جاري توليد الرد
-    const typing = {role:'assistant', text:'جاري توليد الرد من دُرّة بغداد 🇮🇶...'};
-    renderMessage(typing); 
-    const typingEl = $('#chatMessages').lastElementChild;
-    typingEl.dataset.typing = '1';
 
-    try {
-      // إرسال الرسالة إلى سيرفر Railway الفعلي والاتصال بـ Gemini
-      const promptText = q + (file ? ` [ملف مرفق: ${file.name}]` : '');
-      const realReply = await window.DurratBaghdadAPI.chat(promptText);
-      
-      // إزالة رسالة التحميل
-      typingEl.remove();
-      
-      const reply = {role:'assistant', text: realReply};
-      state.messages.push(reply); 
-      renderMessage(reply); 
+    const file=state.file;
+    const userText=q || `حلل الملف: ${file?.name||''}`;
+
+    state.messages.push({
+      role:'user',
+      text:q || 'تم إرفاق ملف',
+      file:file?.name||''
+    });
+    renderMessage(state.messages[state.messages.length-1]);
+    save();
+
+    input.value='';
+    input.style.height='auto';
+    state.file=null;
+    $('#filePreview').classList.add('hidden');
+    $('#filePreview').innerHTML='';
+
+    const typing={role:'assistant',text:'⏳ جاري الاتصال بذكاء دُرّة بغداد...'};
+    renderMessage(typing);
+    const typingEl=$('#chatMessages').lastElementChild;
+    if(typingEl) typingEl.dataset.typing='1';
+
+    try{
+      if(!window.DurratBaghdadAPI?.chat){
+        throw new Error('واجهة API غير متوفرة');
+      }
+
+      const reply = await window.DurratBaghdadAPI.chat(userText);
+
+      const last=$('#chatMessages').querySelector('[data-typing="1"]');
+      if(last) last.remove();
+
+      const assistantMessage={role:'assistant',text:reply};
+      state.messages.push(assistantMessage);
+      renderMessage(assistantMessage);
       save();
-    } catch (error) {
-      typingEl.remove();
-      const errorReply = {role:'assistant', text: '⚠️ عذراً، حدث خطأ في الاتصال بالذكاء الاصطناعي على السيرفر: ' + error.message};
-      state.messages.push(errorReply); 
-      renderMessage(errorReply); 
+      $('#chatMessages').scrollTop=$('#chatMessages').scrollHeight;
+
+    }catch(error){
+      console.error('[DURRAT CHAT]', error);
+
+      const last=$('#chatMessages').querySelector('[data-typing="1"]');
+      if(last) last.remove();
+
+      const assistantMessage={
+        role:'assistant',
+        text:'❌ تعذر الاتصال بذكاء دُرّة بغداد.
+
+تأكد أن السيرفر يعمل وأن مفتاح Gemini صحيح ومضاف كمتغير بيئة GEMINI_API_KEY.'
+      };
+
+      state.messages.push(assistantMessage);
+      renderMessage(assistantMessage);
       save();
+      $('#chatMessages').scrollTop=$('#chatMessages').scrollHeight;
     }
-    
-    $('#chatMessages').scrollTop = $('#chatMessages').scrollHeight;
   }
   $('#sendBtn').onclick=sendChat;
+
   $('#chatInput').addEventListener('keydown',e=>{
     if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendChat();}
   });
