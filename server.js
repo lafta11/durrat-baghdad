@@ -6,7 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // تم وضع المفتاح الخاص بك بنجاح
-const ai = new GoogleGenAI({ apiKey: 'AQ.Ab8RN6I-u489eJw0fjbs5quXqfQyZbOIsptduRAollJ9KGzS5g' });
+const ai = new GoogleGenAI({ apiKey: process.env.GEMIIN_APK_KEY || process.env.API_KEY || 'AQ.Ab8RN6I-u489eJw0fjbs5quXqfQyZbOIsptduRAollJ9KGzS5g'});
 
 app.disable('x-powered-by');
 app.use(express.json({ limit: '100mb' }));
