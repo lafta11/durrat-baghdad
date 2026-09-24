@@ -450,21 +450,49 @@
     return `تم استلام طلبك: «${q}»\nهذه نسخة واجهة محلية؛ لإنتاج إجابة حقيقية من نموذج ذكاء اصطناعي، اربط دالة sendChat بخدمة API التي تستخدمها.`;
   }
 
-  function sendChat(){
+  async function sendChat(){
     const input=$('#chatInput'), q=input.value.trim();
     if(!q && !state.file) return;
-    state.messages.push({role:'user',text:q||'تم إرفاق ملف',file:state.file?.name||''});
-    renderMessage(state.messages[state.messages.length-1]); save();
-    input.value=''; input.style.height='auto';
-    const file=state.file; state.file=null; $('#filePreview').classList.add('hidden'); $('#filePreview').innerHTML='';
-    const typing={role:'assistant',text:'جاري تجهيز الرد...'};
-    renderMessage(typing); $('#chatMessages').lastElementChild.dataset.typing='1';
-    setTimeout(()=>{
-      const last=$('#chatMessages').querySelector('[data-typing="1"]'); if(last) last.remove();
-      const reply={role:'assistant',text:assistantReply(q || `حلل الملف: ${file?.name||''}`)};
-      state.messages.push(reply); renderMessage(reply); save();
-      $('#chatMessages').scrollTop=$('#chatMessages').scrollHeight;
-    },500);
+    
+    const userMsg = {role:'user', text: q || 'تم إرفاق ملف', file: state.file?.name||''};
+    state.messages.push(userMsg);
+    renderMessage(userMsg); 
+    save();
+    
+    input.value=''; 
+    input.style.height='auto';
+    const file = state.file; 
+    state.file = null; 
+    $('#filePreview').classList.add('hidden'); 
+    $('#filePreview').innerHTML = '';
+    
+    // إشعار بأن السيرفر جاري توليد الرد
+    const typing = {role:'assistant', text:'جاري توليد الرد من دُرّة بغداد 🇮🇶...'};
+    renderMessage(typing); 
+    const typingEl = $('#chatMessages').lastElementChild;
+    typingEl.dataset.typing = '1';
+
+    try {
+      // إرسال الرسالة إلى سيرفر Railway الفعلي والاتصال بـ Gemini
+      const promptText = q + (file ? ` [ملف مرفق: ${file.name}]` : '');
+      const realReply = await window.DurratBaghdadAPI.chat(promptText);
+      
+      // إزالة رسالة التحميل
+      typingEl.remove();
+      
+      const reply = {role:'assistant', text: realReply};
+      state.messages.push(reply); 
+      renderMessage(reply); 
+      save();
+    } catch (error) {
+      typingEl.remove();
+      const errorReply = {role:'assistant', text: '⚠️ عذراً، حدث خطأ في الاتصال بالذكاء الاصطناعي على السيرفر: ' + error.message};
+      state.messages.push(errorReply); 
+      renderMessage(errorReply); 
+      save();
+    }
+    
+    $('#chatMessages').scrollTop = $('#chatMessages').scrollHeight;
   }
   $('#sendBtn').onclick=sendChat;
   $('#chatInput').addEventListener('keydown',e=>{
