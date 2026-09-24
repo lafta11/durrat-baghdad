@@ -46,7 +46,6 @@
     .light-mode .dark-field{background:#f8fafc!important;color:#0f172a!important;border-color:#dbe2ea!important}
     .light-mode .nav-dark{background:#fff!important;color:#334155!important}
 
-    /* Iraqi server dashboard */
     .iraq-server-logo{background:#101722}
     .iraq-flag{position:absolute;inset:0;display:flex;flex-direction:column}
     .iraq-flag span:nth-child(1){height:33.33%;background:#ce1126}
@@ -82,7 +81,6 @@
     .network-bars{height:95px;display:flex;align-items:flex-end;gap:5px}.network-bars i{flex:1;height:30%;min-width:5px;border-radius:5px 5px 2px 2px;background:linear-gradient(to top,#168a4b,#f5c451);opacity:.8;animation:networkBeat 1.2s ease-in-out infinite alternate}.network-bars i:nth-child(2n){animation-delay:.2s}.network-bars i:nth-child(3n){animation-delay:.45s}.network-bars i:nth-child(4n){animation-delay:.7s}
     @keyframes networkBeat{from{height:18%;opacity:.45}to{height:var(--h,78%);opacity:.95}}
     @media(max-width:640px){.server-orb{width:150px;height:150px}.server-hero{min-height:auto}.node-row{grid-template-columns:1fr auto}.node-row small{display:none}}
-
   </style>
 </head>
 <body>
@@ -135,7 +133,7 @@
             <div class="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-amber-400/10 blur-3xl"></div>
             <span class="inline-flex items-center gap-2 text-xs font-bold text-amber-200 bg-amber-300/10 border border-amber-300/15 px-3 py-1.5 rounded-full">✦ مرحباً بك في درة بغداد</span>
             <h2 class="text-3xl sm:text-5xl font-black leading-tight mt-5">كل أدواتك الذكية<br><span class="gold-text">في مكان واحد.</span></h2>
-            <p class="text-slate-400 mt-4 max-w-2xl leading-7 text-sm">واجهة عربية حديثة لتنظيم المحادثات، الملفات، الأدوات الرقمية، وتجارب الذكاء الاصطناعي. هذه النسخة تعمل محلياً داخل المتصفح ويمكن ربطها لاحقاً بأي API.</p>
+            <p class="text-slate-400 mt-4 max-w-2xl leading-7 text-sm">واجهة عربية حديثة لتنظيم المحادثات، الملفات، الأدوات الرقمية، وتجارب الذكاء الاصطناعي متصلة بـ Google Gemini.</p>
             <div class="flex flex-wrap gap-3 mt-7">
               <button data-tab="chat" class="gold-btn px-5 py-3 rounded-2xl font-black text-sm transition">ابدأ محادثة ✦</button>
               <button data-tab="tools" class="px-5 py-3 rounded-2xl font-bold text-sm border border-white/10 bg-white/5 hover:bg-white/10 transition">استكشف الأدوات</button>
@@ -172,7 +170,7 @@
       <section id="tab-chat" class="tab">
         <div class="glass rounded-[2rem] overflow-hidden h-[calc(100vh-155px)] min-h-[600px] flex flex-col">
           <div class="px-5 py-4 border-b border-white/10 flex items-center justify-between gap-3">
-            <div><h2 class="font-black">المساعد الذكي</h2><p class="text-[11px] text-slate-500">تفاعل محلي تجريبي — جاهز للربط مع API</p></div>
+            <div><h2 class="font-black">المساعد الذكي (Gemini)</h2><p class="text-[11px] text-slate-500">متصل بـ Railway & Google Gemini API</p></div>
             <div class="flex gap-2">
               <button id="clearChat" class="px-3 py-2 rounded-xl text-xs border border-white/10 bg-white/5 hover:bg-red-500/10 hover:text-red-300">مسح</button>
               <button id="exportChat" class="px-3 py-2 rounded-xl text-xs border border-white/10 bg-white/5">تصدير</button>
@@ -210,7 +208,7 @@
       <section id="tab-fusion" class="tab">
         <div class="grid lg:grid-cols-[1fr_.65fr] gap-5">
           <div class="glass rounded-[2rem] p-5 sm:p-7">
-            <div class="flex items-center justify-between"><div><h2 class="text-xl font-black">استوديو الأوامر</h2><p class="text-xs text-slate-500 mt-1">حوّل فكرتك إلى خطوات منظمة داخل المتصفح.</p></div><span class="text-2xl">⚡</span></div>
+            <div class="flex items-center justify-between"><div><h2 class="text-xl font-black">استوديو الأوامر</h2><p class="text-xs text-slate-500 mt-1">حوّل فكرتك إلى خطوات منظمة.</p></div><span class="text-2xl">⚡</span></div>
             <textarea id="studioInput" class="dark-field w-full mt-5 h-56 bg-black/20 border border-white/10 rounded-2xl p-4 text-sm outline-none focus:border-amber-300/40 resize-none" placeholder="مثال: أنشئ خطة تسويق لمتجر إلكتروني..."></textarea>
             <div class="flex flex-wrap gap-2 mt-3">
               <button data-template="حلل الفكرة وحدد الهدف والجمهور والمخاطر والخطوات." class="studio-template px-3 py-2 rounded-xl text-[11px] bg-white/5 border border-white/10">تحليل</button>
@@ -226,153 +224,33 @@
         </div>
       </section>
 
-      <!-- SYSTEM / IRAQI SERVER -->
+      <!-- SYSTEM -->
       <section id="tab-servers" class="tab">
         <div class="relative overflow-hidden glass rounded-[2rem] p-5 sm:p-7 border border-amber-300/10">
-          <div class="absolute inset-0 pointer-events-none opacity-60">
-            <div class="absolute -top-32 -left-20 w-80 h-80 bg-amber-400/10 blur-3xl rounded-full"></div>
-            <div class="absolute -bottom-32 -right-20 w-80 h-80 bg-emerald-400/10 blur-3xl rounded-full"></div>
-          </div>
-
-          <div class="relative">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div class="flex items-center gap-4">
-                <div class="iraq-server-logo relative w-16 h-16 rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex items-center justify-center">
-                  <div class="iraq-flag">
-                    <span></span><span></span><span></span>
-                  </div>
-                  <div class="absolute inset-0 flex items-center justify-center">
-                    <span class="text-white text-2xl font-black drop-shadow-lg">★</span>
-                  </div>
-                  <div class="server-scan"></div>
-                </div>
-                <div>
-                  <div class="flex items-center gap-2">
-                    <h2 class="text-xl sm:text-2xl font-black">سيرفر دُرّة بغداد</h2>
-                    <span class="server-live-badge"><i></i> LIVE</span>
-                  </div>
-                  <p class="text-xs text-slate-500 mt-1">Iraq Node • Baghdad • Secure AI Gateway</p>
-                </div>
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+              <div class="iraq-server-logo relative w-16 h-16 rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex items-center justify-center">
+                <div class="iraq-flag"><span></span><span></span><span></span></div>
+                <div class="absolute inset-0 flex items-center justify-center"><span class="text-white text-2xl font-black">★</span></div>
               </div>
-
-              <div class="flex items-center gap-2">
-                <div class="server-connection">
-                  <i></i>
-                  <span>متصل ومستقر</span>
-                </div>
-                <button id="serverRefresh" class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 hover:border-amber-300/30 transition" title="تحديث حالة السيرفر">↻</button>
+              <div>
+                <div class="flex items-center gap-2"><h2 class="text-xl sm:text-2xl font-black">سيرفر دُرّة بغداد</h2><span class="server-live-badge"><i></i> LIVE</span></div>
+                <p class="text-xs text-slate-500 mt-1">Iraq Node • Baghdad • Gemini AI Gateway</p>
               </div>
             </div>
-
-            <div class="server-hero mt-6 rounded-3xl border border-white/10 bg-black/20 overflow-hidden relative">
-              <div class="server-grid"></div>
-              <div class="data-stream stream-1"></div>
-              <div class="data-stream stream-2"></div>
-              <div class="data-stream stream-3"></div>
-
-              <div class="relative z-10 p-5 sm:p-7">
-                <div class="flex flex-col lg:flex-row lg:items-center gap-7">
-                  <div class="flex-1">
-                    <div class="text-[10px] tracking-[.25em] text-amber-200/70">IRAQI INTELLIGENCE NETWORK</div>
-                    <h3 class="text-2xl sm:text-4xl font-black mt-2">
-                      بوابة العراق الذكية
-                      <span class="gold-text">🇮🇶</span>
-                    </h3>
-                    <p class="text-xs sm:text-sm text-slate-400 mt-3 leading-6 max-w-2xl">
-                      قناة تشغيل افتراضية لمنصة دُرّة بغداد. المؤشرات أدناه محاكاة واجهة ويمكن ربطها لاحقاً
-                      بمراقبة حقيقية للسيرفر وواجهات API.
-                    </p>
-
-                    <div class="flex flex-wrap gap-2 mt-5">
-                      <span class="server-chip">🔐 اتصال مشفر</span>
-                      <span class="server-chip">⚡ استجابة فورية</span>
-                      <span class="server-chip">🇮🇶 Iraq Node</span>
-                      <span class="server-chip">🛡️ حماية نشطة</span>
-                    </div>
-                  </div>
-
-                  <div class="server-orb-wrap">
-                    <div class="server-orb">
-                      <div class="orb-ring ring-a"></div>
-                      <div class="orb-ring ring-b"></div>
-                      <div class="orb-ring ring-c"></div>
-                      <div class="orb-core">
-                        <div class="orb-flag">🇮🇶</div>
-                        <span>ONLINE</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-4">
-              <div class="server-stat">
-                <div class="stat-icon">⚡</div>
-                <div><span>Latency</span><b id="serverLatency">24 ms</b></div>
-                <em id="latencyPulse">ممتاز</em>
-              </div>
-              <div class="server-stat">
-                <div class="stat-icon">◈</div>
-                <div><span>CPU</span><b id="serverCPU">18%</b></div>
-                <div class="mini-bar"><i id="cpuBar"></i></div>
-              </div>
-              <div class="server-stat">
-                <div class="stat-icon">▣</div>
-                <div><span>Memory</span><b id="serverRAM">42%</b></div>
-                <div class="mini-bar"><i id="ramBar"></i></div>
-              </div>
-              <div class="server-stat">
-                <div class="stat-icon">↯</div>
-                <div><span>Requests</span><b id="serverRequests">1,284</b></div>
-                <em class="green-text">+12.4%</em>
-              </div>
-            </div>
-
-            <div class="grid lg:grid-cols-[1fr_.7fr] gap-4 mt-4">
-              <div class="glass rounded-3xl p-5 border border-white/5">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <h3 class="font-black">مراقبة العقد</h3>
-                    <p class="text-[10px] text-slate-500 mt-1">حالة الخدمات المتصلة بالمنصة</p>
-                  </div>
-                  <span class="text-[10px] text-emerald-300">● جميع الخدمات تعمل</span>
-                </div>
-
-                <div class="space-y-2 mt-4">
-                  <div class="node-row"><span>🇮🇶 Baghdad Core</span><b><i></i> Online</b><small>24ms</small></div>
-                  <div class="node-row"><span>🧠 AI Gateway</span><b><i></i> Online</b><small>31ms</small></div>
-                  <div class="node-row"><span>📁 File Engine</span><b><i></i> Ready</b><small>18ms</small></div>
-                  <div class="node-row"><span>⚡ Fusion Engine</span><b><i></i> Active</b><small>27ms</small></div>
-                </div>
-              </div>
-
-              <div class="glass rounded-3xl p-5 border border-white/5">
-                <div class="flex items-center justify-between">
-                  <h3 class="font-black">نشاط الشبكة</h3>
-                  <span class="text-[10px] text-slate-500">LIVE</span>
-                </div>
-                <div class="network-bars mt-5" id="networkBars">
-                  <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-                </div>
-                <div class="flex justify-between text-[10px] text-slate-600 mt-3"><span>منخفض</span><span>نشط</span><span>مرتفع</span></div>
-                <button id="serverTest" class="w-full mt-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs font-bold hover:bg-amber-300/10 hover:text-amber-200 transition">اختبار الاتصال بالسيرفر</button>
-              </div>
+            <div class="flex items-center gap-2">
+              <div class="server-connection"><i></i><span data-server-status>متصل ومستقر</span></div>
+              <button id="serverRefresh" class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 hover:border-amber-300/30 transition" title="تحديث حالة السيرفر">↻</button>
             </div>
           </div>
         </div>
       </section>
     </main>
-
-    <footer class="text-center text-[10px] text-slate-600 py-4">
-      دُرّة بغداد © 2026 — واجهة تجريبية قابلة للتطوير والربط بخدمات الذكاء الاصطناعي.
-    </footer>
   </div>
 
 <script>
 (() => {
-  const $ = s => document.querySelector(s);
-  const $$ = s => [...document.querySelectorAll(s)];
+  const $ = s => document.querySelector(s);   const $$ = s => [...document.querySelectorAll(s)];
   const state = {
     tab: 'home',
     messages: JSON.parse(localStorage.getItem('durrat_baghdad_messages') || '[]'),
@@ -383,12 +261,7 @@
     {name:'ChatGPT', cat:'محادثة وكتابة', icon:'✦', desc:'مساعد للكتابة والتحليل والبرمجة.', url:'https://chatgpt.com/'},
     {name:'Gemini', cat:'محادثة وبحث', icon:'✧', desc:'مساعد من Google للكتابة والتحليل.', url:'https://gemini.google.com/'},
     {name:'Claude', cat:'كتابة وتحليل', icon:'◈', desc:'مساعد نصي لتحليل المستندات والكتابة.', url:'https://claude.ai/'},
-    {name:'Perplexity', cat:'بحث', icon:'⌕', desc:'بحث مدعوم بالذكاء الاصطناعي والمصادر.', url:'https://www.perplexity.ai/'},
-    {name:'Midjourney', cat:'صور', icon:'◉', desc:'إنشاء صور إبداعية من الأوصاف.', url:'https://www.midjourney.com/'},
-    {name:'Adobe Firefly', cat:'صور وتصميم', icon:'✺', desc:'أدوات توليد وتصميم بالذكاء الاصطناعي.', url:'https://firefly.adobe.com/'},
-    {name:'Canva', cat:'تصميم', icon:'C', desc:'تصميمات وعروض ومحتوى بصري.', url:'https://www.canva.com/'},
-    {name:'ElevenLabs', cat:'صوت', icon:'♫', desc:'توليد وتحويل الكلام والصوت.', url:'https://elevenlabs.io/'},
-    {name:'Hugging Face', cat:'نماذج', icon:'🤗', desc:'مجتمع ومنصة للنماذج المفتوحة.', url:'https://huggingface.co/'}
+    {name:'Perplexity', cat:'بحث', icon:'⌕', desc:'بحث مدعوم بالذكاء الاصطناعي والمصادر.', url:'https://www.perplexity.ai/'}
   ];
 
   function escapeHTML(v){
@@ -406,13 +279,10 @@
   function switchTab(tab){
     state.tab=tab;
     $$('.tab').forEach(x=>x.classList.toggle('active',x.id===`tab-${tab}`));
-    $$('.nav-btn').forEach(b=>b.classList.toggle('nav-active',b.dataset.tab===tab));
-    $('#mobileNav').classList.add('hidden');
-    if(tab==='chat') setTimeout(()=>$('#chatInput').focus(),80);
-  }
-  $$('.nav-btn,[data-tab]').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));
+    $$('.nav-btn').forEach(b=>b.classList.toggle('nav-active',b.dataset.tab===tab));$('#mobileNav')?.classList.add('hidden');
+    if(tab==='chat') setTimeout(()=>$('#chatInput').focus(),80);   }   $$('.nav-btn,[data-tab]').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));
 
-  $('#mobileMenuBtn').onclick=()=>$('#mobileNav').classList.toggle('hidden');
+  $('#mobileMenuBtn')?.addEventListener('click',()=>$('#mobileNav').classList.toggle('hidden'));
   $('#themeBtn').onclick=()=>{
     document.body.classList.toggle('light-mode');
     localStorage.setItem('durrat_theme',document.body.classList.contains('light-mode')?'light':'dark');
@@ -433,7 +303,7 @@
   function renderChat(){
     $('#chatMessages').innerHTML='';
     if(!state.messages.length){
-      state.messages.push({role:'assistant',text:'أهلاً بك 👋 أنا دُرّة بغداد. اكتب طلبك، وسأرسل رسالتك إلى الذكاء الاصطناعي عبر السيرفر.'});
+      state.messages.push({role:'assistant',text:'أهلاً بك 👋 أنا واجهة دُرّة بغداد المتصلة بـ Google Gemini. اكتب طلبك وسأجيبك فوراً.'});
       save();
     }
     state.messages.forEach(renderMessage);
@@ -441,227 +311,123 @@
   }
   renderChat();
 
+  // الاتصال الحقيقي بسيرفر Node.js و Gemini API
   async function sendChat(){
     const input=$('#chatInput'), q=input.value.trim();
     if(!q && !state.file) return;
 
-    const file=state.file;
-    const userText=q || `حلل الملف: ${file?.name||''}`;
-
-    state.messages.push({
-      role:'user',
-      text:q || 'تم إرفاق ملف',
-      file:file?.name||''
-    });
-    renderMessage(state.messages[state.messages.length-1]);
+    const userMsg = {role:'user', text: q || 'تم إرفاق ملف', file: state.file?.name||''};
+    state.messages.push(userMsg);
+    renderMessage(userMsg); 
     save();
-
-    input.value='';
+    
+    input.value=''; 
     input.style.height='auto';
-    state.file=null;
-    $('#filePreview').classList.add('hidden');
-    $('#filePreview').innerHTML='';
+    const file = state.file; 
+    state.file = null; 
+    $('#filePreview').classList.add('hidden'); 
+    $('#filePreview').innerHTML = '';
 
-    const typing={role:'assistant',text:'⏳ جاري الاتصال بذكاء دُرّة بغداد...'};
-    renderMessage(typing);
-    const typingEl=$('#chatMessages').lastElementChild;
-    if(typingEl) typingEl.dataset.typing='1';
+    const typing = {role:'assistant', text:'جاري توليد الرد من Gemini 🇮🇶...'};
+    renderMessage(typing); 
+    const typingEl = $('#chatMessages').lastElementChild;
+    typingEl.dataset.typing = '1';
 
-    try{
-      if(!window.DurratBaghdadAPI?.chat){
-        throw new Error('واجهة API غير متوفرة');
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: q + (file ? ` [ملف مرفق: ${file.name}]` : ''), history: state.messages.slice(-10) })
+      });
+
+      const data = await response.json();
+      typingEl.remove();
+
+      if (!response.ok || data.status !== 'success') {
+        throw new Error(data.reply || 'تعذر الاتصال بالسيرفر');
       }
 
-      const reply = await window.DurratBaghdadAPI.chat(userText);
-
-      const last=$('#chatMessages').querySelector('[data-typing="1"]');
-      if(last) last.remove();
-
-      const assistantMessage={role:'assistant',text:reply};
-      state.messages.push(assistantMessage);
-      renderMessage(assistantMessage);
+      const reply = {role:'assistant', text: data.reply};
+      state.messages.push(reply); 
+      renderMessage(reply); 
       save();
-      $('#chatMessages').scrollTop=$('#chatMessages').scrollHeight;
-
-    }catch(error){
-      console.error('[DURRAT CHAT]', error);
-
-      const last=$('#chatMessages').querySelector('[data-typing="1"]');
-      if(last) last.remove();
-
-      const assistantMessage={
-        role:'assistant',
-        text:'❌ تعذر الاتصال بذكاء دُرّة بغداد.
-
-تأكد أن السيرفر يعمل وأن مفتاح Gemini صحيح ومضاف كمتغير بيئة GEMINI_API_KEY.'
-      };
-
-      state.messages.push(assistantMessage);
-      renderMessage(assistantMessage);
+    } catch (error) {
+      typingEl.remove();
+      const errReply = {role:'assistant', text: '⚠️ خطأ في الاتصال بالذكاء الاصطناعي: ' + error.message};
+      state.messages.push(errReply); 
+      renderMessage(errReply); 
       save();
-      $('#chatMessages').scrollTop=$('#chatMessages').scrollHeight;
     }
-  }
-  $('#sendBtn').onclick=sendChat;
 
-  $('#chatInput').addEventListener('keydown',e=>{
-    if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendChat();}
+    $('#chatMessages').scrollTop = $('#chatMessages').scrollHeight;
+  }
+
+  $('#sendBtn').onclick = sendChat;
+  $('#chatInput').addEventListener('keydown', e => {
+    if(e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); }
   });
-  $('#chatInput').addEventListener('input',e=>{e.target.style.height='auto';e.target.style.height=Math.min(e.target.scrollHeight,130)+'px'});
+  $('#chatInput').addEventListener('input', e => {
+    e.target.style.height = 'auto';
+    e.target.style.height = Math.min(e.target.scrollHeight, 130) + 'px';
+  });
 
   function handleFile(file){
-    if(!file)return;
-    state.file=file;
+    if(!file) return;
+    state.file = file;
     $('#filePreview').classList.remove('hidden');
-    $('#filePreview').innerHTML=`<div class="flex items-center gap-3 bg-amber-300/10 border border-amber-300/15 rounded-xl p-3 text-xs">
+    $('#filePreview').innerHTML = `<div class="flex items-center gap-3 bg-amber-300/10 border border-amber-300/15 rounded-xl p-3 text-xs">
       <span class="text-xl">📎</span><div class="min-w-0 flex-1"><b class="block truncate">${escapeHTML(file.name)}</b><span class="text-[10px] text-slate-500">${Math.round(file.size/1024)} KB</span></div>
       <button id="removeFile" class="text-slate-500 hover:text-red-300">✕</button></div>`;
-    $('#removeFile').onclick=()=>{state.file=null;$('#filePreview').classList.add('hidden');};
+    $('#removeFile').onclick = () => { state.file = null; $('#filePreview').classList.add('hidden'); };
     toast('تم إرفاق الملف بنجاح');
   }
-  $('#attachBtn').onclick=()=>$('#fileInput').click();
-  $('#fileInput').onchange=e=>handleFile(e.target.files[0]);
-  const dz=$('#dropZone');
-  ['dragenter','dragover'].forEach(ev=>dz.addEventListener(ev,e=>{e.preventDefault();dz.classList.add('drag')}));
-  ['dragleave','drop'].forEach(ev=>dz.addEventListener(ev,e=>{e.preventDefault();dz.classList.remove('drag')}));
-  dz.addEventListener('drop',e=>handleFile(e.dataTransfer.files[0]));
 
-  $$('.quick-prompt').forEach(b=>b.onclick=()=>{switchTab('chat');$('#chatInput').value=b.dataset.prompt;$('#chatInput').focus()});
-  $('#clearChat').onclick=()=>{
-    if(!confirm('مسح سجل المحادثة؟'))return;
-    state.messages=[]; save(); renderChat(); toast('تم مسح المحادثة');
+  $('#attachBtn').onclick = () => $('#fileInput').click();
+  $('#fileInput').onchange = e => handleFile(e.target.files[0]);
+
+  $('#clearChat').onclick = () => {
+    if(!confirm('مسح سجل المحادثة؟')) return;
+    state.messages = []; save(); renderChat(); toast('تم مسح المحادثة');
   };
-  $('#exportChat').onclick=()=>{
-    const blob=new Blob([state.messages.map(m=>`${m.role==='user'?'أنت':'درة بغداد'}: ${m.text}`).join('\n\n')],{type:'text/plain;charset=utf-8'});
-    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='durrat-baghdad-chat.txt';a.click();URL.revokeObjectURL(a.href);
+
+  $('#exportChat').onclick = () => {
+    const blob = new Blob([state.messages.map(m=>`${m.role==='user'?'أنت':'درة بغداد'}: ${m.text}`).join('\n\n')],{type:'text/plain;charset=utf-8'});
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'durrat-baghdad-chat.txt'; a.click();
     toast('تم تصدير المحادثة');
   };
 
   function renderTools(filter=''){
-    const grid=$('#toolGrid'); grid.innerHTML='';
-    const list=tools.filter(t=>(t.name+' '+t.cat+' '+t.desc).toLowerCase().includes(filter.toLowerCase()));
-    $('#noTools').classList.toggle('hidden',!!list.length);
-    list.forEach(t=>{
-      const card=document.createElement('div');card.className='tool-card glass rounded-2xl p-4';
-      card.innerHTML=`<div class="flex items-start gap-3"><div class="w-11 h-11 rounded-xl bg-amber-300/10 border border-amber-300/10 flex items-center justify-center text-xl text-amber-200">${t.icon}</div>
+    const grid = $('#toolGrid'); grid.innerHTML = '';
+    const list = tools.filter(t => (t.name+' '+t.cat+' '+t.desc).toLowerCase().includes(filter.toLowerCase()));
+    $('#noTools').classList.toggle('hidden', !!list.length);
+    list.forEach(t => {
+      const card = document.createElement('div'); card.className = 'tool-card glass rounded-2xl p-4';
+      card.innerHTML = `<div class="flex items-start gap-3"><div class="w-11 h-11 rounded-xl bg-amber-300/15 border border-amber-300/10 flex items-center justify-center text-xl text-amber-200">${t.icon}</div>
       <div class="min-w-0"><h3 class="font-black text-sm">${t.name}</h3><span class="text-[10px] text-amber-200/70">${t.cat}</span><p class="text-[11px] text-slate-500 mt-1 leading-5">${t.desc}</p></div></div>
       <a href="${t.url}" target="_blank" rel="noopener noreferrer" class="block text-center mt-4 py-2 rounded-xl bg-white/5 border border-white/10 text-[11px] font-bold hover:bg-amber-300/10 hover:text-amber-200">فتح الموقع الرسمي ↗</a>`;
       grid.appendChild(card);
     });
   }
   renderTools();
-  $('#toolSearch').oninput=e=>renderTools(e.target.value);
-
-  $$('.studio-template').forEach(b=>b.onclick=()=>{$('#studioInput').value=b.dataset.template});
-  $('#runStudio').onclick=()=>{
-    const input=$('#studioInput').value.trim(); if(!input){toast('اكتب فكرة أولاً');return}
-    const out=`الهدف المقترح:\n${input}\n\nخطة التنفيذ:\n1. تحديد المطلوب والنتيجة النهائية.\n2. تقسيم المهمة إلى وحدات صغيرة.\n3. تحديد المدخلات والمخرجات.\n4. تنفيذ النموذج الأولي.\n5. اختبار النتيجة وتحسينها.\n6. مراجعة الجودة والاتساق.\n7. تجهيز النسخة النهائية.\n\nملاحظة: هذه النتيجة مولدة محلياً من قالب الواجهة وليست اتصالاً بنموذج خارجي.`;
-    $('#studioResult').textContent=out; toast('تم تشغيل الاستوديو');
-  };
-  $('#copyStudio').onclick=async()=>{try{await navigator.clipboard.writeText($('#studioResult').textContent);toast('تم النسخ')}catch{toast('تعذر النسخ تلقائياً')}};
-
-
-  // Iraqi server dashboard live simulation
-  const serverBars = $$('#networkBars i');
-  function updateServerMetrics(){
-    const latency = Math.floor(18 + Math.random()*28);
-    const cpu = Math.floor(12 + Math.random()*38);
-    const ram = Math.floor(34 + Math.random()*22);
-    const requests = 1180 + Math.floor(Math.random()*260);
-    $('#serverLatency').textContent = latency + ' ms';
-    $('#serverCPU').textContent = cpu + '%';
-    $('#serverRAM').textContent = ram + '%';
-    $('#serverRequests').textContent = requests.toLocaleString('en-US');
-    $('#cpuBar').style.width = cpu + '%';
-    $('#ramBar').style.width = ram + '%';
-    $('#latencyPulse').textContent = latency < 35 ? 'ممتاز' : 'جيد';
-    serverBars.forEach((bar,i)=>{
-      bar.style.setProperty('--h', (25 + Math.floor(Math.random()*70)) + '%');
-      bar.style.animationDelay = (i * 0.07) + 's';
-    });
-  }
-  updateServerMetrics();
-  setInterval(updateServerMetrics, 2200);
-  $('#serverRefresh').onclick=()=>{
-    updateServerMetrics();
-    toast('تم تحديث حالة سيرفر دُرّة بغداد 🇮🇶');
-  };
-  $('#serverTest').onclick=()=>{
-    const btn=$('#serverTest');
-    const old=btn.textContent;
-    btn.textContent='جاري اختبار الاتصال...';
-    btn.disabled=true;
-    setTimeout(()=>{
-      btn.textContent='✓ الاتصال بالسيرفر مستقر — 100%';
-      toast('اختبار الاتصال ناجح 🇮🇶');
-      setTimeout(()=>{btn.textContent=old;btn.disabled=false},1800);
-    },900);
+  $('#toolSearch').oninput = e => renderTools(e.target.value);    $$('.studio-template').forEach(b => b.onclick = () => {$('#studioInput').value = b.dataset.template; });
+  $('#runStudio').onclick = () => {
+    const input = $('#studioInput').value.trim(); if(!input){ toast('اكتب فكرة أولاً'); return; }
+    $('#studioResult').textContent = `التحليل المقترح لفكرتك:\n${input}\n\n1. دراسة الجدوى وتحديد الجمهور المستهدف.\n2. إعداد الموارد التقنية اللازمة.\n3. صياغة خطة إطلاق تجريبية.\n4. تفعيل قنوات التسويق والمتابعة.`;
+    toast('تم التشغيل بنجاح');
   };
 
-  $('#latency').textContent=Math.floor(18+Math.random()*24)+' ms';
+  $('#serverRefresh')?.addEventListener('click', async () => {
+    try {
+      const res = await fetch('/api/status');
+      const data = await res.json();
+      toast(`السيرفر متصل بنجاح: ${data.service} (${data.model}) 🇮🇶`);
+    } catch {
+      toast('تعذر الاتصال بالسيرفر');
+    }
+  });
+
   updateCount();
 })();
 </script>
-
-<script>
-/* ===== دُرّة بغداد — الاتصال الحقيقي بالسيرفر ===== */
-(function () {
-    const API_BASE = window.location.origin;
-
-    async function durratServerChat(message) {
-        const response = await fetch(API_BASE + '/api/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message })
-        });
-
-        const data = await response.json();
-
-        if (!response.ok || data.status !== 'success') {
-            throw new Error(data.reply || 'تعذر الاتصال بالسيرفر');
-        }
-
-        return data.reply;
-    }
-
-    async function checkDurratServer() {
-        const response = await fetch(API_BASE + '/api/status', { cache: 'no-store' });
-        if (!response.ok) throw new Error('السيرفر غير متاح');
-        return response.json();
-    }
-
-    // متاح لأي جزء من الواجهة يريد استخدام API الحقيقي.
-    window.DurratBaghdadAPI = {
-        chat: durratServerChat,
-        status: checkDurratServer
-    };
-
-    // إذا كانت الواجهة تحتوي على دالة إرسال، نستبدل الرد المحلي بالـ API.
-    const originalFetch = window.fetch;
-    window.fetch = function(input, init) {
-        return originalFetch.apply(this, arguments);
-    };
-
-    // تحديث حالة السيرفر إذا وجدت عناصر مخصصة لها.
-    async function updateServerConnection() {
-        try {
-            const status = await checkDurratServer();
-            document.querySelectorAll('[data-server-status]').forEach(el => {
-                el.textContent = status.status === 'online' ? 'ONLINE' : 'OFFLINE';
-                el.classList.toggle('offline', status.status !== 'online');
-            });
-        } catch (_) {
-            document.querySelectorAll('[data-server-status]').forEach(el => {
-                el.textContent = 'OFFLINE';
-                el.classList.add('offline');
-            });
-        }
-    }
-
-    updateServerConnection();
-    setInterval(updateServerConnection, 15000);
-})();
-</script>
-
 </body>
 </html>
