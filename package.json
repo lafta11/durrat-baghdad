@@ -1,7 +1,6 @@
 {
   "name": "durrat-baghdad-ai",
   "version": "1.0.0",
-  "description": "دُرّة بغداد الذكية",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
