@@ -45,42 +45,16 @@
     .light-mode{--bg:#f4f7fb;--panel:rgba(255,255,255,.86);--panel2:rgba(248,250,252,.9);--line:rgba(15,23,42,.10);--text:#0f172a;--muted:#64748b}
     .light-mode .dark-field{background:#f8fafc!important;color:#0f172a!important;border-color:#dbe2ea!important}
     .light-mode .nav-dark{background:#fff!important;color:#334155!important}
-
     .iraq-server-logo{background:#101722}
     .iraq-flag{position:absolute;inset:0;display:flex;flex-direction:column}
     .iraq-flag span:nth-child(1){height:33.33%;background:#ce1126}
     .iraq-flag span:nth-child(2){height:33.33%;background:#fff}
     .iraq-flag span:nth-child(3){height:33.33%;background:#111}
     .iraq-flag:after{content:"الله أكبر";position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);color:#168a4b;font-size:9px;font-weight:900;white-space:nowrap}
-    .server-scan{position:absolute;inset:-100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transform:rotate(25deg);animation:serverScan 3.8s infinite}
-    @keyframes serverScan{0%{translate:-80%}65%,100%{translate:80%}}
     .server-live-badge{font-size:9px;padding:4px 7px;border-radius:99px;background:rgba(37,199,138,.10);border:1px solid rgba(37,199,138,.22);color:#6ee7b7;display:inline-flex;align-items:center;gap:5px}
-    .server-live-badge i,.server-connection i,.node-row b i{width:6px;height:6px;border-radius:50%;background:#34d399;display:inline-block;box-shadow:0 0 12px #34d399;animation:serverPulse 1.6s infinite}
+    .server-live-badge i{width:6px;height:6px;border-radius:50%;background:#34d399;display:inline-block;box-shadow:0 0 12px #34d399;animation:serverPulse 1.6s infinite}
     @keyframes serverPulse{50%{opacity:.35;transform:scale(.65)}}
     .server-connection{font-size:10px;color:#6ee7b7;padding:9px 11px;border-radius:12px;background:rgba(37,199,138,.07);border:1px solid rgba(37,199,138,.15);display:flex;align-items:center;gap:7px}
-    .server-hero{min-height:285px}
-    .server-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(245,196,81,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(245,196,81,.06) 1px,transparent 1px);background-size:35px 35px;mask-image:linear-gradient(to bottom,black,transparent)}
-    .data-stream{position:absolute;width:2px;height:120%;top:-10%;background:linear-gradient(transparent,rgba(245,196,81,.65),transparent);filter:blur(.2px);animation:dataStream 4s linear infinite}
-    .stream-1{right:17%;animation-delay:0s}.stream-2{right:46%;animation-delay:1.4s}.stream-3{right:74%;animation-delay:2.5s}
-    @keyframes dataStream{from{transform:translateY(-30%);opacity:0}30%{opacity:1}to{transform:translateY(35%);opacity:0}}
-    .server-chip{font-size:10px;padding:7px 9px;border-radius:10px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);color:#94a3b8}
-    .server-orb-wrap{display:flex;justify-content:center;min-width:210px}
-    .server-orb{width:190px;height:190px;position:relative;display:flex;align-items:center;justify-content:center}
-    .orb-ring{position:absolute;border:1px solid rgba(245,196,81,.25);border-radius:50%;inset:5px;animation:orbSpin 8s linear infinite}
-    .ring-b{inset:25px;border-color:rgba(37,199,138,.25);animation-duration:5s;animation-direction:reverse}
-    .ring-c{inset:45px;border-color:rgba(245,196,81,.3);animation-duration:3.5s}
-    @keyframes orbSpin{to{transform:rotate(360deg)}}
-    .orb-core{width:92px;height:92px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle,#23354b,#07101b 70%);border:1px solid rgba(245,196,81,.4);box-shadow:0 0 35px rgba(245,196,81,.12),inset 0 0 25px rgba(37,199,138,.08);animation:coreFloat 2.5s ease-in-out infinite}
-    @keyframes coreFloat{50%{transform:scale(1.05);box-shadow:0 0 50px rgba(245,196,81,.18),inset 0 0 25px rgba(37,199,138,.12)}}
-    .orb-flag{font-size:28px;line-height:1}.orb-core span{font-size:8px;color:#6ee7b7;font-weight:900;letter-spacing:.12em;margin-top:4px}
-    .server-stat{position:relative;padding:15px;border:1px solid rgba(255,255,255,.06);border-radius:18px;background:rgba(255,255,255,.025);display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center}
-    .stat-icon{width:35px;height:35px;border-radius:11px;background:rgba(245,196,81,.08);display:flex;align-items:center;justify-content:center;color:#f5d77b}
-    .server-stat span{display:block;color:#64748b;font-size:9px}.server-stat b{display:block;font-size:13px;margin-top:2px}.server-stat em{font-size:9px;font-style:normal;color:#94a3b8}.green-text{color:#6ee7b7!important}
-    .mini-bar{grid-column:1/-1;height:3px;background:rgba(255,255,255,.05);border-radius:99px;overflow:hidden}.mini-bar i{display:block;height:100%;width:30%;background:linear-gradient(90deg,#eab63f,#34d399);border-radius:99px;transition:width .7s ease}
-    .node-row{display:grid;grid-template-columns:1fr auto 50px;gap:10px;align-items:center;padding:11px 12px;border-radius:13px;background:rgba(255,255,255,.025);font-size:11px}.node-row b{font-size:9px;color:#6ee7b7;font-weight:700;display:flex;align-items:center;gap:5px}.node-row small{text-align:left;color:#64748b;font-size:9px}
-    .network-bars{height:95px;display:flex;align-items:flex-end;gap:5px}.network-bars i{flex:1;height:30%;min-width:5px;border-radius:5px 5px 2px 2px;background:linear-gradient(to top,#168a4b,#f5c451);opacity:.8;animation:networkBeat 1.2s ease-in-out infinite alternate}.network-bars i:nth-child(2n){animation-delay:.2s}.network-bars i:nth-child(3n){animation-delay:.45s}.network-bars i:nth-child(4n){animation-delay:.7s}
-    @keyframes networkBeat{from{height:18%;opacity:.45}to{height:var(--h,78%);opacity:.95}}
-    @media(max-width:640px){.server-orb{width:150px;height:150px}.server-hero{min-height:auto}.node-row{grid-template-columns:1fr auto}.node-row small{display:none}}
   </style>
 </head>
 <body>
@@ -133,7 +107,7 @@
             <div class="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-amber-400/10 blur-3xl"></div>
             <span class="inline-flex items-center gap-2 text-xs font-bold text-amber-200 bg-amber-300/10 border border-amber-300/15 px-3 py-1.5 rounded-full">✦ مرحباً بك في درة بغداد</span>
             <h2 class="text-3xl sm:text-5xl font-black leading-tight mt-5">كل أدواتك الذكية<br><span class="gold-text">في مكان واحد.</span></h2>
-            <p class="text-slate-400 mt-4 max-w-2xl leading-7 text-sm">واجهة عربية حديثة لتنظيم المحادثات، الملفات، الأدوات الرقمية، وتجارب الذكاء الاصطناعي متصلة بـ Google Gemini.</p>
+            <p class="text-slate-400 mt-4 max-w-2xl leading-7 text-sm">واجهة عربية حديثة لتنظيم المحادثات، الملفات، والأدوات الرقمية متصلة بـ Google Gemini.</p>
             <div class="flex flex-wrap gap-3 mt-7">
               <button data-tab="chat" class="gold-btn px-5 py-3 rounded-2xl font-black text-sm transition">ابدأ محادثة ✦</button>
               <button data-tab="tools" class="px-5 py-3 rounded-2xl font-bold text-sm border border-white/10 bg-white/5 hover:bg-white/10 transition">استكشف الأدوات</button>
@@ -249,7 +223,7 @@
   </div>
 
 <script>
-(() => {
+(function() {
   const $ = s => document.querySelector(s);   const $$ = s => [...document.querySelectorAll(s)];
   const state = {
     tab: 'home',
@@ -274,22 +248,27 @@
     setTimeout(()=>el.remove(),2600);
   }
   function save(){ localStorage.setItem('durrat_baghdad_messages',JSON.stringify(state.messages)); updateCount(); }
-  function updateCount(){ $('#sessionCount').textContent = `${state.messages.length} رسالة`; }
+  function updateCount(){ const el = $('#sessionCount'); if(el) el.textContent = `${state.messages.length} رسالة`; }
 
   function switchTab(tab){
     state.tab=tab;
     $$('.tab').forEach(x=>x.classList.toggle('active',x.id===`tab-${tab}`));
     $$('.nav-btn').forEach(b=>b.classList.toggle('nav-active',b.dataset.tab===tab));$('#mobileNav')?.classList.add('hidden');
-    if(tab==='chat') setTimeout(()=>$('#chatInput').focus(),80);   }   $$('.nav-btn,[data-tab]').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));
+    if(tab==='chat') setTimeout(()=>$('#chatInput')?.focus(),80);   }   $$('.nav-btn,[data-tab]').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab)));
 
   $('#mobileMenuBtn')?.addEventListener('click',()=>$('#mobileNav').classList.toggle('hidden'));
-  $('#themeBtn').onclick=()=>{
-    document.body.classList.toggle('light-mode');
-    localStorage.setItem('durrat_theme',document.body.classList.contains('light-mode')?'light':'dark');
-  };
+  const themeBtn = $('#themeBtn');
+  if(themeBtn){
+    themeBtn.onclick=()=>{
+      document.body.classList.toggle('light-mode');
+      localStorage.setItem('durrat_theme',document.body.classList.contains('light-mode')?'light':'dark');
+    };
+  }
   if(localStorage.getItem('durrat_theme')==='light') document.body.classList.add('light-mode');
 
   function renderMessage(m){
+    const chatBox = $('#chatMessages');
+    if(!chatBox) return;
     const wrap=document.createElement('div');
     wrap.className=`message flex ${m.role==='user'?'justify-start':'justify-end'}`;
     const bubble=document.createElement('div');
@@ -297,23 +276,26 @@
       ? 'max-w-[88%] sm:max-w-[75%] bg-gradient-to-br from-amber-300 to-amber-500 text-slate-950 rounded-2xl rounded-br-md px-4 py-3 text-sm shadow-lg'
       : 'max-w-[88%] sm:max-w-[75%] bg-white/[.045] border border-white/10 text-slate-200 rounded-2xl rounded-bl-md px-4 py-3 text-sm leading-7';
     bubble.innerHTML=`<div class="text-[9px] opacity-60 mb-1">${m.role==='user'?'أنت':'دُرّة بغداد'}</div>${escapeHTML(m.text).replace(/\n/g,'<br>')}${m.file?`<div class="mt-2 pt-2 border-t border-current/10 text-[10px] opacity-70">📎 ${escapeHTML(m.file)}</div>`:''}`;
-    wrap.appendChild(bubble); $('#chatMessages').appendChild(wrap);
+    wrap.appendChild(bubble); chatBox.appendChild(wrap);
   }
 
   function renderChat(){
-    $('#chatMessages').innerHTML='';
+    const chatBox = $('#chatMessages');
+    if(!chatBox) return;
+    chatBox.innerHTML='';
     if(!state.messages.length){
       state.messages.push({role:'assistant',text:'أهلاً بك 👋 أنا واجهة دُرّة بغداد المتصلة بـ Google Gemini. اكتب طلبك وسأجيبك فوراً.'});
       save();
     }
     state.messages.forEach(renderMessage);
-    $('#chatMessages').scrollTop=$('#chatMessages').scrollHeight;
+    chatBox.scrollTop=chatBox.scrollHeight;
   }
   renderChat();
 
-  // الاتصال الحقيقي بسيرفر Node.js و Gemini API
   async function sendChat(){
-    const input=$('#chatInput'), q=input.value.trim();
+    const input=$('#chatInput');
+    if(!input) return;
+    const q=input.value.trim();
     if(!q && !state.file) return;
 
     const userMsg = {role:'user', text: q || 'تم إرفاق ملف', file: state.file?.name||''};
@@ -325,13 +307,14 @@
     input.style.height='auto';
     const file = state.file; 
     state.file = null; 
-    $('#filePreview').classList.add('hidden'); 
-    $('#filePreview').innerHTML = '';
+    const preview = $('#filePreview');
+    if(preview){ preview.classList.add('hidden'); preview.innerHTML = ''; }
 
     const typing = {role:'assistant', text:'جاري توليد الرد من Gemini 🇮🇶...'};
     renderMessage(typing); 
-    const typingEl = $('#chatMessages').lastElementChild;
-    typingEl.dataset.typing = '1';
+    const chatBox = $('#chatMessages');
+    const typingEl = chatBox?.lastElementChild;
+    if(typingEl) typingEl.dataset.typing = '1';
 
     try {
       const response = await fetch('/api/chat', {
@@ -341,7 +324,7 @@
       });
 
       const data = await response.json();
-      typingEl.remove();
+      typingEl?.remove();
 
       if (!response.ok || data.status !== 'success') {
         throw new Error(data.reply || 'تعذر الاتصال بالسيرفر');
@@ -352,54 +335,75 @@
       renderMessage(reply); 
       save();
     } catch (error) {
-      typingEl.remove();
+      typingEl?.remove();
       const errReply = {role:'assistant', text: '⚠️ خطأ في الاتصال بالذكاء الاصطناعي: ' + error.message};
       state.messages.push(errReply); 
       renderMessage(errReply); 
       save();
     }
 
-    $('#chatMessages').scrollTop = $('#chatMessages').scrollHeight;
+    if(chatBox) chatBox.scrollTop = chatBox.scrollHeight;
   }
 
-  $('#sendBtn').onclick = sendChat;
-  $('#chatInput').addEventListener('keydown', e => {
-    if(e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); }
-  });
-  $('#chatInput').addEventListener('input', e => {
-    e.target.style.height = 'auto';
-    e.target.style.height = Math.min(e.target.scrollHeight, 130) + 'px';
-  });
+  const sendBtn = $('#sendBtn');
+  if(sendBtn) sendBtn.onclick = sendChat;
+  
+  const chatInput = $('#chatInput');
+  if(chatInput){
+    chatInput.addEventListener('keydown', e => {
+      if(e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); }
+    });
+    chatInput.addEventListener('input', e => {
+      e.target.style.height = 'auto';
+      e.target.style.height = Math.min(e.target.scrollHeight, 130) + 'px';
+    });
+  }
 
   function handleFile(file){
     if(!file) return;
     state.file = file;
-    $('#filePreview').classList.remove('hidden');
-    $('#filePreview').innerHTML = `<div class="flex items-center gap-3 bg-amber-300/10 border border-amber-300/15 rounded-xl p-3 text-xs">
+    const preview = $('#filePreview');
+    if(!preview) return;
+    preview.classList.remove('hidden');
+    preview.innerHTML = `<div class="flex items-center gap-3 bg-amber-300/10 border border-amber-300/15 rounded-xl p-3 text-xs">
       <span class="text-xl">📎</span><div class="min-w-0 flex-1"><b class="block truncate">${escapeHTML(file.name)}</b><span class="text-[10px] text-slate-500">${Math.round(file.size/1024)} KB</span></div>
       <button id="removeFile" class="text-slate-500 hover:text-red-300">✕</button></div>`;
-    $('#removeFile').onclick = () => { state.file = null; $('#filePreview').classList.add('hidden'); };
+    const removeBtn = $('#removeFile');
+    if(removeBtn) removeBtn.onclick = () => { state.file = null; preview.classList.add('hidden'); };
     toast('تم إرفاق الملف بنجاح');
   }
 
-  $('#attachBtn').onclick = () => $('#fileInput').click();
-  $('#fileInput').onchange = e => handleFile(e.target.files[0]);
+  const attachBtn = $('#attachBtn');
+  const fileInput = $('#fileInput');
+  if(attachBtn && fileInput){
+    attachBtn.onclick = () => fileInput.click();
+    fileInput.onchange = e => handleFile(e.target.files[0]);
+  }
 
-  $('#clearChat').onclick = () => {
-    if(!confirm('مسح سجل المحادثة؟')) return;
-    state.messages = []; save(); renderChat(); toast('تم مسح المحادثة');
-  };
+  const clearChat = $('#clearChat');
+  if(clearChat){
+    clearChat.onclick = () => {
+      if(!confirm('مسح سجل المحادثة؟')) return;
+      state.messages = []; save(); renderChat(); toast('تم مسح المحادثة');
+    };
+  }
 
-  $('#exportChat').onclick = () => {
-    const blob = new Blob([state.messages.map(m=>`${m.role==='user'?'أنت':'درة بغداد'}: ${m.text}`).join('\n\n')],{type:'text/plain;charset=utf-8'});
-    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'durrat-baghdad-chat.txt'; a.click();
-    toast('تم تصدير المحادثة');
-  };
+  const exportChat = $('#exportChat');
+  if(exportChat){
+    exportChat.onclick = () => {
+      const blob = new Blob([state.messages.map(m=>`${m.role==='user'?'أنت':'درة بغداد'}: ${m.text}`).join('\n\n')],{type:'text/plain;charset=utf-8'});
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'durrat-baghdad-chat.txt'; a.click();
+      toast('تم تصدير المحادثة');
+    };
+  }
 
   function renderTools(filter=''){
-    const grid = $('#toolGrid'); grid.innerHTML = '';
+    const grid = $('#toolGrid'); 
+    if(!grid) return;
+    grid.innerHTML = '';
     const list = tools.filter(t => (t.name+' '+t.cat+' '+t.desc).toLowerCase().includes(filter.toLowerCase()));
-    $('#noTools').classList.toggle('hidden', !!list.length);
+    const noTools = $('#noTools');
+    if(noTools) noTools.classList.toggle('hidden', !!list.length);
     list.forEach(t => {
       const card = document.createElement('div'); card.className = 'tool-card glass rounded-2xl p-4';
       card.innerHTML = `<div class="flex items-start gap-3"><div class="w-11 h-11 rounded-xl bg-amber-300/15 border border-amber-300/10 flex items-center justify-center text-xl text-amber-200">${t.icon}</div>
@@ -409,22 +413,35 @@
     });
   }
   renderTools();
-  $('#toolSearch').oninput = e => renderTools(e.target.value);    $$('.studio-template').forEach(b => b.onclick = () => {$('#studioInput').value = b.dataset.template; });
-  $('#runStudio').onclick = () => {
-    const input = $('#studioInput').value.trim(); if(!input){ toast('اكتب فكرة أولاً'); return; }
-    $('#studioResult').textContent = `التحليل المقترح لفكرتك:\n${input}\n\n1. دراسة الجدوى وتحديد الجمهور المستهدف.\n2. إعداد الموارد التقنية اللازمة.\n3. صياغة خطة إطلاق تجريبية.\n4. تفعيل قنوات التسويق والمتابعة.`;
-    toast('تم التشغيل بنجاح');
-  };
-
-  $('#serverRefresh')?.addEventListener('click', async () => {
-    try {
-      const res = await fetch('/api/status');
-      const data = await res.json();
-      toast(`السيرفر متصل بنجاح: ${data.service} (${data.model}) 🇮🇶`);
-    } catch {
-      toast('تعذر الاتصال بالسيرفر');
-    }
+  
+  const toolSearch = $('#toolSearch');   if(toolSearch) toolSearch.oninput = e => renderTools(e.target.value);    $$('.studio-template').forEach(b => b.onclick = () => { 
+    const input = $('#studioInput');
+    if(input) input.value = b.dataset.template; 
   });
+
+  const runStudio = $('#runStudio');
+  if(runStudio){
+    runStudio.onclick = () => {
+      const input = $('#studioInput')?.value.trim(); 
+      if(!input){ toast('اكتب فكرة أولاً'); return; }
+      const res = $('#studioResult');
+      if(res) res.textContent = `التحليل المقترح لفكرتك:\n${input}\n\n1. دراسة الجدوى وتحديد الجمهور المستهدف.\n2. إعداد الموارد التقنية اللازمة.\n3. صياغة خطة إطلاق تجريبية.\n4. تفعيل قنوات التسويق والمتابعة.`;
+      toast('تم التشغيل بنجاح');
+    };
+  }
+
+  const serverRefresh = $('#serverRefresh');
+  if(serverRefresh){
+    serverRefresh.onclick = async () => {
+      try {
+        const res = await fetch('/api/status');
+        const data = await res.json();
+        toast(`السيرفر متصل بنجاح: ${data.service} (${data.model}) 🇮🇶`);
+      } catch {
+        toast('تعذر الاتصال بالسيرفر');
+      }
+    };
+  }
 
   updateCount();
 })();
