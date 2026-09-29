@@ -1,3 +1,6 @@
+// أضفنا هذا السطر بالبداية حتى يقرا ملف الـ .env محلياً
+require('dotenv').config();
+
 const express = require('express');
 const path = require('path');
 const { GoogleGenAI } = require('@google/genai');
@@ -49,7 +52,7 @@ app.post('/api/chat', async (req, res) => {
         }
 
         if (!ai) {
-            return res.status(500).json({ status: 'error', reply: 'مفتاح Gemini غير متصل في متغيرات Railway.' });
+            return res.status(500).json({ status: 'error', reply: 'مفتاح Gemini غير متصل. تأكد من إعداد ملف الـ .env.' });
         }
 
         const response = await ai.models.generateContent({
