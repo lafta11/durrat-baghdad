@@ -1,146 +1,77 @@
-const express = require("express");
-const path = require("path");
+// أضفنا هذا السطر بالبداية حتى يقرا ملف الـ .env محلياً
+require('dotenv').config();
+
+const express = require('express');
+const path = require('path');
+const { GoogleGenAI } = require('@google/genai');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const FRONTEND_FILE = process.env.FRONTEND_FILE || 'durrat_baghdad.html';
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
+const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 
-app.disable("x-powered-by");
+let ai = null;
+try {
+    if (GEMINI_API_KEY) {
+        ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+    }
+} catch (e) {
+    console.error('AI Init Error:', e);
+}
 
-app.use(express.json({ limit: "100mb" }));
-app.use(express.urlencoded({ extended: true, limit: "100mb" }));
+app.disable('x-powered-by');
+app.use(express.json({ limit: '100mb' }));
+app.use(express.urlencoded({ extended: true, limit: '100mb' }));
 app.use(express.static(__dirname));
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "durrat_baghdad.html"));
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, FRONTEND_FILE), (error) => {
+        if (error) {
+            res.status(500).send(`تعذر فتح واجهة دُرّة بغداد. تأكد أن الملف "${FRONTEND_FILE}" موجود.`);
+        }
+    });
 });
 
-app.get("/api/status", (req, res) => {
-  res.json({
-    status: "online",
-    aiConnected: !!GEMINI_API_KEY,
-    provider: "Google Gemini",
-    model: GEMINI_MODEL,
-    uptime: Math.floor(process.uptime())
-  });
-});
-
-app.post("/api/chat", async (req, res) => {
-  try {
-    const { message, history = [] } = req.body;
-
-    if (!message || typeof message !== "string") {
-      return res.status(400).json({
-        status: "error",
-        reply: "اكتب رسالة أولاً."
-      });
-    }
-
-    if (!GEMINI_API_KEY) {
-      return res.status(500).json({
-        status: "error",
-        reply: "GEMINI_API_KEY غير موجود في Railway Variables."
-      });
-    }
-
-    const contents = [];
-
-    if (Array.isArray(history)) {
-      for (const item of history.slice(-20)) {
-        if (
-          item &&
-          (item.role === "user" || item.role === "model") &&
-          typeof item.text === "string" &&
-          item.text.trim()
-        ) {
-          contents.push({
-            role: item.role,
-            parts: [{ text: item.text.trim() }]
-          });
-        }
-      }
-    }
-
-    contents.push({
-      role: "user",
-      parts: [{ text: message.trim() }]
-    });
-
-    const url =
-      `https://generativelanguage.googleapis.com/v1beta/models/` +
-      `${GEMINI_MODEL}:generateContent`;
-
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-goog-api-key": GEMINI_API_KEY
-      },
-      body: JSON.stringify({
-        contents,
-        systemInstruction: {
-          parts: [
-            {
-              text:
-                "أنت مساعد الذكاء الاصطناعي لمنصة دُرّة بغداد 🇮🇶. " +
-                "أجب بالعربية بشكل طبيعي وودود وذكي ودقيق. " +
-                "استخدم اللهجة العراقية عندما تكون مناسبة."
-            }
-          ]
-        },
-        generationConfig: {
-          temperature: 0.7,
-          maxOutputTokens: 2048
-        }
-      })
-    });
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      console.error("[GEMINI ERROR]", JSON.stringify(data, null, 2));
-
-      return res.status(response.status).json({
-        status: "error",
-        reply:
-          data?.error?.message ||
-          "Gemini رفض الطلب. تحقق من مفتاح API وإعدادات المشروع."
-      });
-    }
-
-    const reply = data?.candidates?.[0]?.content?.parts
-      ?.map(part => part?.text || "")
-      .join("")
-      .trim();
-
-    if (!reply) {
-      return res.status(500).json({
-        status: "error",
-        reply: "وصل رد من Gemini لكن بدون نص."
-      });
-    }
-
+app.get('/api/status', (req, res) => {
     res.json({
-      status: "success",
-      reply,
-      model: GEMINI_MODEL
+        status: 'online',
+        aiConnected: Boolean(ai),
+        model: GEMINI_MODEL,
+        service: 'Durrat Baghdad AI',
+        uptime: Math.floor(process.uptime())
     });
-
-  } catch (error) {
-    console.error("[SERVER ERROR]", error);
-
-    res.status(500).json({
-      status: "error",
-      reply: "حدث خطأ داخلي أثناء الاتصال بالذكاء الاصطناعي."
-    });
-  }
 });
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log("🇮🇶 دُرّة بغداد");
-  console.log(`🚀 PORT: ${PORT}`);
-  console.log(`🤖 Gemini: ${GEMINI_API_KEY ? "CONNECTED" : "NOT CONFIGURED"}`);
-  console.log(`🧠 Model: ${GEMINI_MODEL}`);
+app.post('/api/chat', async (req, res) => {
+    try {
+        const { message, history } = req.body;
+        if (!message || typeof message !== 'string') {
+            return res.status(400).json({ status: 'error', reply: 'يرجى كتابة رسالة صحيحة.' });
+        }
+
+        if (!ai) {
+            return res.status(500).json({ status: 'error', reply: 'مفتاح Gemini غير متصل. تأكد من إعداد ملف الـ .env.' });
+        }
+
+        const response = await ai.models.generateContent({
+            model: GEMINI_MODEL,
+            contents: message.trim(),
+            config: {
+                systemInstruction: 'أنت مساعد الذكاء الاصطناعي لمنصة دُرّة بغداد 🇮🇶. أجب باللغة العربية بطريقة ذكية وودودة.'
+            }
+        });
+
+        const reply = response.text ? response.text.trim() : 'عذراً، لم أستطع توليد رد.';
+        return res.json({ status: 'success', reply });
+
+    } catch (error) {
+        console.error('[AI ERROR]', error);
+        return res.status(500).json({ status: 'error', reply: 'حدث خطأ في الاتصال بـ Gemini.' });
+    }
+});
+
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`✅ السيرفر يعمل بشكل مستقر على البورت: ${PORT}`);
 });
