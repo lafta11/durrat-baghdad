@@ -1,4 +1,3 @@
-// أضفنا هذا السطر بالبداية حتى يقرا ملف الـ .env محلياً
 require('dotenv').config();
 
 const express = require('express');
@@ -15,7 +14,7 @@ const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 let ai = null;
 try {
     if (GEMINI_API_KEY) {
-        ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+        ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY.trim() });
     }
 } catch (e) {
     console.error('AI Init Error:', e);
@@ -46,13 +45,13 @@ app.get('/api/status', (req, res) => {
 
 app.post('/api/chat', async (req, res) => {
     try {
-        const { message, history } = req.body;
+        const { message } = req.body;
         if (!message || typeof message !== 'string') {
             return res.status(400).json({ status: 'error', reply: 'يرجى كتابة رسالة صحيحة.' });
         }
 
         if (!ai) {
-            return res.status(500).json({ status: 'error', reply: 'مفتاح Gemini غير متصل. تأكد من إعداد ملف الـ .env.' });
+            return res.status(500).json({ status: 'error', reply: 'مفتاح Gemini غير متصل. تأكد من إعداد المفتاح.' });
         }
 
         const response = await ai.models.generateContent({
@@ -73,5 +72,8 @@ app.post('/api/chat', async (req, res) => {
 });
 
 app.listen(PORT, '0.0.0.0', () => {
-    console.log(`✅ السيرفر يعمل بشكل مستقر على البورت: ${PORT}`);
+    console.log(`🇮🇶 دُرّة بغداد`);
+    console.log(`🚀 السيرفر يعمل بشكل مستقر على البورت: ${PORT}`);
+    console.log(`🤖 Gemini: ${ai ? "CONNECTED" : "NOT CONFIGURED"}`);
+    console.log(`🧠 Model: ${GEMINI_MODEL}`);
 });
